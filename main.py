@@ -19,12 +19,20 @@ prompts = [
     }
 ]
 
+
 def show_list():
     print("=== 프롬프트 목록 ===")
+
+    if len(prompts) == 0:
+        print("등록된 프롬프트가 없습니다.")
+        return
 
     for i, prompt in enumerate(prompts, start=1):
         star = "⭐" if prompt["favorite"] else ""
         print(f"{i}. [{prompt['category']}] {prompt['title']} {star}")
+
+    print(f"\n총 {len(prompts)}개의 프롬프트")
+
 
 def show_by_category():
     print("=== 카테고리별 조회 ===")
@@ -64,12 +72,26 @@ def show_by_category():
     else:
         print(f"\n총 {count}개의 프롬프트")
 
-def show_list():
-    print("=== 프롬프트 목록 ===")
+
+def search_prompt():
+    print("=== 프롬프트 검색 ===")
+
+    keyword = input("검색어: ")
+
+    count = 0
+
+    print("\n검색 결과:")
 
     for i, prompt in enumerate(prompts, start=1):
-        star = "⭐" if prompt["favorite"] else ""
-        print(f"{i}. [{prompt['category']}] {prompt['title']} {star}")
+        if keyword in prompt["title"] or keyword in prompt["content"]:
+            star = "⭐" if prompt["favorite"] else ""
+            print(f"{i}. [{prompt['category']}] {prompt['title']} {star}")
+            count += 1
+
+    if count == 0:
+        print("검색 결과가 없습니다.")
+    else:
+        print(f"\n총 {count}개의 프롬프트를 찾았습니다.")
 
 
 def add_prompt():
@@ -77,14 +99,18 @@ def add_prompt():
 
     while True:
         title = input("제목: ")
+
         if title != "":
             break
+
         print("제목은 비워둘 수 없습니다.")
 
     while True:
         content = input("내용: ")
+
         if content != "":
             break
+
         print("내용은 비워둘 수 없습니다.")
 
     categories = [
@@ -112,7 +138,11 @@ def add_prompt():
 
         elif choice == "7":
             category = input("카테고리 입력: ")
-            break
+
+            if category != "":
+                break
+
+            print("카테고리를 입력해주세요.")
 
         else:
             print("올바른 번호를 입력하세요.")
@@ -126,8 +156,9 @@ def add_prompt():
 
     print("프롬프트가 추가되었습니다!")
 
+
 def show_menu():
-    print("=== 나만의 프롬프트 관리 ===")
+    print("\n=== 나만의 프롬프트 관리 ===")
     print("1. 프롬프트 추가")
     print("2. 프롬프트 목록")
     print("3. 카테고리별 조회")
@@ -145,10 +176,19 @@ while True:
 
     if choice == "1":
         add_prompt()
+
     elif choice == "2":
         show_list()
+
     elif choice == "3":
         show_by_category()
+
+    elif choice == "4":
+        search_prompt()
+
     elif choice == "0":
         print("프로그램을 종료합니다.")
         break
+
+    else:
+        print("올바른 메뉴 번호를 입력하세요.")

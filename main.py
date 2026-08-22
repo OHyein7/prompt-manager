@@ -250,8 +250,10 @@ while True:
         show_favorites()
 
     elif choice == "0":
-        print("프로그램을 종료합니다.")
-        break
+       print("프로그램을 종료합니다.")
+       print("이용해주셔서 감사합니다!")
+       break
 
     else:
-        print("올바른 메뉴 번호를 입력하세요.")
+       print("올바른 메뉴 번호를 입력하세요.")
+    

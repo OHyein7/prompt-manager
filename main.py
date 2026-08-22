@@ -73,25 +73,37 @@ def show_by_category():
         print(f"\n총 {count}개의 프롬프트")
 
 
-def search_prompt():
-    print("=== 프롬프트 검색 ===")
+def show_detail():
+    print("=== 프롬프트 상세 보기 ===")
 
-    keyword = input("검색어: ")
+    if len(prompts) == 0:
+        print("등록된 프롬프트가 없습니다.")
+        return
 
-    count = 0
+    number = input("번호 입력: ")
 
-    print("\n검색 결과:")
+    if not number.isdigit():
+        print("번호를 입력해주세요.")
+        return
 
-    for i, prompt in enumerate(prompts, start=1):
-        if keyword in prompt["title"] or keyword in prompt["content"]:
-            star = "⭐" if prompt["favorite"] else ""
-            print(f"{i}. [{prompt['category']}] {prompt['title']} {star}")
-            count += 1
+    index = int(number) - 1
 
-    if count == 0:
-        print("검색 결과가 없습니다.")
-    else:
-        print(f"\n총 {count}개의 프롬프트를 찾았습니다.")
+    if index < 0 or index >= len(prompts):
+        print("잘못된 번호입니다.")
+        return
+
+    prompt = prompts[index]
+
+    star = "⭐" if prompt["favorite"] else "없음"
+
+    print("\n------------------------------")
+    print(f"제목: {prompt['title']}")
+    print(f"카테고리: {prompt['category']}")
+    print(f"즐겨찾기: {star}")
+    print("------------------------------")
+    print("내용:")
+    print(prompt["content"])
+    print("------------------------------")
 
 
 def add_prompt():
@@ -185,6 +197,9 @@ while True:
 
     elif choice == "4":
         search_prompt()
+
+    elif choice == "5":
+        show_detail()
 
     elif choice == "0":
         print("프로그램을 종료합니다.")

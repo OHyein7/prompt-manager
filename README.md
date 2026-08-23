@@ -115,6 +115,13 @@ show_favorites() : 즐겨찾기 목록 출력
 
 기능별로 함수를 분리하여 코드의 가독성과 유지보수성을 높였습니다.
 
+### 프롬프트 검색 방식
+
+검색어를 입력하면 제목과 내용에 대해 부분문자열 비교를 수행합니다.
+
+검색어가 프롬프트의 제목 또는 내용에 포함되어 있으면 검색 결과에 해당 프롬프트를 출력합니다.
+
+
 ### 데이터 구조 설계
 
 프롬프트 데이터는 리스트 안에 딕셔너리를 저장하는 방식으로 구성했습니다.
@@ -190,6 +197,25 @@ Python의 리스트와 딕셔너리 구조를 그대로 저장하기 쉽고 별�
 
 향후에는 각 프롬프트에 고유 ID를 부여하여 동일한 제목도 구분할 수 있도록 개선할 수 있습니다.
 
-### 샘플 저장소 Clone
 
-Git 학습 과정에서 공개 저장소를 git clone하여 저장소의 파일 구조와 Git 로그를 확인했습니다.
+## 샘플 저장소 Clone
+
+Git 학습 과정에서 공개 샘플 저장소를 clone하여 저장소의 파일 구조와 Git 로그를 확인했습니다.
+
+실행한 명령어:
+
+```bash
+git clone https://github.com/octocat/Spoon-Knife.git sample-clone
+```
+
+실제 실행 결과:
+
+```text
+Cloning into 'sample-clone'...
+remote: Enumerating objects: 16, done.
+remote: Total 16 (delta 0), reused 0 (delta 0), pack-reused 16 (from 1)
+Receiving objects: 100% (16/16), done.
+Resolving deltas: 100% (3/3), done.
+```
+
+실제 실행 장면들은 모두 "screenshot" 폴더에 저장했습니다.

@@ -11,6 +11,49 @@ Python으로 만든 콘솔 기반 프롬프트 관리 프로그램입니다.
 - Git
 - GitHub
 
+### Python 버전 확인
+
+터미널에서 다음 명령어로 Python 버전을 확인할 수 있습니다.
+
+```bash
+python -V
+```
+
+예시:
+
+```text
+Python 3.14.x
+```
+
+Python 3.10 이상 버전을 사용합니다.
+
+### Git 버전 확인
+
+터미널에서 다음 명령어로 Git 버전을 확인할 수 있습니다.
+
+```bash
+git --version
+```
+
+예시:
+
+```text
+git version 2.x.x
+```
+
+Git 사용자 정보는 다음 명령어로 확인할 수 있습니다.
+
+```bash
+git config --global user.name
+git config --global user.email
+```
+
+## GitHub 저장소
+
+프로젝트 GitHub 저장소:
+
+https://github.com/OHyein7/prompt-manager
+
 ## 실행 방법
 
 1. Python을 설치합니다.
@@ -39,6 +82,10 @@ python main.py
 
 검색어를 입력하여 프롬프트의 제목 또는 내용에서 원하는 프롬프트를 검색할 수 있습니다.
 
+검색은 제목과 내용에 대해 부분문자열 비교 방식으로 동작합니다.
+
+검색어가 제목 또는 내용에 포함되어 있으면 해당 프롬프트를 검색 결과로 출력합니다.
+
 ### 5. 프롬프트 상세 보기
 
 프롬프트의 제목, 카테고리, 즐겨찾기 상태 및 전체 내용을 확인할 수 있습니다.
@@ -60,69 +107,7 @@ python main.py
 - 자동화
 - 기타
 
-## 데이터 저장 방식
-
-프롬프트 데이터는 Python의 리스트와 딕셔너리를 사용하여 저장합니다.
-
-프로그램 실행 중에는 추가하거나 변경한 데이터가 유지되지만, 프로그램을 종료하면 초기화됩니다.
-
-## 개발 환경 확인
-
-### Python 버전 확인
-
-터미널에서 Python 버전을 확인할 수 있습니다.
-
-python -V
-
-예시: Python 3.14.x
-
-### Git 버전 확인
-
-터미널에서 Git 버전을 확인할 수 있습니다.
-
-git --version
-
-예시: git version 2.x.x
-
-### Git 사용자 정보
-
-git config --global user.name
-
-git config --global user.email
-
-### GitHub 저장소
-
-프로젝트 GitHub 저장소:
-https://github.com/OHyein7/prompt-manager
-
-### 코드 구조
-show_menu() : 프로그램 메뉴 출력
-
-add_prompt() : 새로운 프롬프트 추가
-
-show_list() : 전체 프롬프트 목록 출력
-
-show_by_category() : 카테고리별 프롬프트 조회
-
-search_prompt() : 키워드로 프롬프트 검색
-
-show_detail() : 프롬프트 상세 정보 출력
-
-manage_favorite() : 즐겨찾기 추가/해제
-
-show_favorites() : 즐겨찾기 목록 출력
-
-
-기능별로 함수를 분리하여 코드의 가독성과 유지보수성을 높였습니다.
-
-### 프롬프트 검색 방식
-
-검색어를 입력하면 제목과 내용에 대해 부분문자열 비교를 수행합니다.
-
-검색어가 프롬프트의 제목 또는 내용에 포함되어 있으면 검색 결과에 해당 프롬프트를 출력합니다.
-
-
-### 데이터 구조 설계
+## 데이터 구조 설계
 
 프롬프트 데이터는 리스트 안에 딕셔너리를 저장하는 방식으로 구성했습니다.
 
@@ -134,52 +119,65 @@ show_favorites() : 즐겨찾기 목록 출력
 
 ### 딕셔너리를 사용하는 이유
 
-title, content, category, favorite처럼 각 정보를 의미 있는 키로 관리할 수 있습니다.
+`title`, `content`, `category`, `favorite`처럼 각 정보를 의미 있는 키로 관리할 수 있습니다.
 
 단점은 동일한 구조의 딕셔너리가 반복되어 데이터가 많아질 경우 관리할 정보가 많아질 수 있다는 점입니다.
 
-### 반복문 설계
+## 코드 구조
 
-메인 메뉴는 while True 반복문으로 구성했습니다.
+기능별로 함수를 분리하여 코드의 가독성과 유지보수성을 높였습니다.
 
-기능을 실행한 후 다시 메뉴로 돌아오며, 사용자가 0. 종료를 선택하면 break를 실행하여 반복문을 종료합니다.
+- `show_menu()` : 프로그램 메뉴 출력
+- `add_prompt()` : 새로운 프롬프트 추가
+- `show_list()` : 전체 프롬프트 목록 출력
+- `show_by_category()` : 카테고리별 프롬프트 조회
+- `search_prompt()` : 키워드로 프롬프트 검색
+- `show_detail()` : 프롬프트 상세 정보 출력
+- `manage_favorite()` : 즐겨찾기 추가 및 해제
+- `show_favorites()` : 즐겨찾기 목록 출력
 
-### 브랜치 전략
+## 반복문 설계
 
-프롬프트 추가 기능은 feature/add-prompt 브랜치에서 작업했습니다.
+메인 메뉴는 `while True` 반복문으로 구성했습니다.
 
-기능별로 브랜치를 분리하여 개발한 후 기능이 완성되면 main 브랜치로 merge했습니다.
+기능을 실행한 후 다시 메뉴로 돌아오며, 사용자가 `0. 종료`를 선택하면 `break`를 실행하여 반복문을 종료합니다.
 
-이를 통해 기능별 작업을 분리하고 main 브랜치의 안정적인 상태를 유지할 수 있습니다.
+이를 통해 프로그램을 종료하기 전까지 메뉴를 계속 사용할 수 있도록 설계했습니다.
 
-### 커밋 전략
+## Git 브랜치 전략
 
-기능이나 작업 단위로 커밋을 나누었습니다.
+프롬프트 추가 기능은 `feature/add-prompt` 브랜치에서 작업했습니다.
 
-사용한 커밋 메시지 형식의 예시는 다음과 같습니다.
+기능별로 브랜치를 분리하여 개발한 후 기능이 완성되면 `main` 브랜치로 merge했습니다.
 
-feat: 새로운 기능 추가
+이를 통해 기능별 작업을 분리하고 `main` 브랜치의 안정적인 상태를 유지할 수 있습니다.
 
-fix: 오류 수정
+### 브랜치 및 병합 기록
 
-docs: README 등 문서 수정
+기능 구현 후 `main` 브랜치로 checkout하고 merge하여 작업 내용을 통합했습니다.
 
-chore: 프로젝트 초기 설정
+브랜치 생성 및 병합 기록은 Git 로그를 통해 확인할 수 있습니다.
 
+## Git 커밋 전략
+
+기능이나 작업 단위로 커밋을 나누어 변경 이력을 쉽게 확인할 수 있도록 했습니다.
+
+커밋 메시지는 변경 내용을 알 수 있도록 다음과 같은 형식을 사용했습니다.
+
+- `feat:` 새로운 기능 추가
+- `fix:` 오류 수정
+- `docs:` README 등 문서 수정
+- `chore:` 프로젝트 초기 설정 등 기타 작업
 
 예시:
 
-feat: add prompt creation
+- `feat: add prompt creation`
+- `feat: add prompt search`
+- `feat: add favorite management`
+- `fix: restore prompt search function`
+- `docs: update README`
 
-feat: add prompt search
-
-feat: add favorite management
-
-fix: restore prompt search function
-
-docs: update README
-
-### 데이터 영속화 설계
+## 데이터 영속화 설계
 
 현재 프로그램의 데이터는 메모리에 저장되며 프로그램을 종료하면 초기화됩니다.
 
@@ -189,14 +187,13 @@ Python의 리스트와 딕셔너리 구조를 그대로 저장하기 쉽고 별�
 
 데이터가 많아지고 복잡한 검색이나 여러 사용자의 동시 접근이 필요하다면 SQLite를 사용할 수 있습니다.
 
-### 중복 프롬프트 처리 규칙
+## 중복 프롬프트 처리 규칙
 
 현재 프로그램은 동일한 제목의 프롬프트를 허용합니다.
 
 동일한 제목이 추가되어도 기존 프롬프트를 덮어쓰지 않고 별도의 프롬프트로 저장합니다.
 
 향후에는 각 프롬프트에 고유 ID를 부여하여 동일한 제목도 구분할 수 있도록 개선할 수 있습니다.
-
 
 ## 샘플 저장소 Clone
 
@@ -218,4 +215,8 @@ Receiving objects: 100% (16/16), done.
 Resolving deltas: 100% (3/3), done.
 ```
 
-실제 실행 장면들은 모두 "screenshot" 폴더에 저장했습니다.
+## 실행 결과 스크린샷
+
+프로그램 실행 결과와 Git 작업 과정의 스크린샷은 `screenshots` 폴더에 저장했습니다.
+
+주요 실행 화면, Git 로그, Git clone 실행 결과 등을 확인할 수 있습니다.

@@ -84,7 +84,7 @@ git --version
 
 예시: git version 2.x.x
 
-### Git 사용자 정보는 다음 명령어로 확인할 수 있습니다.
+### Git 사용자 정보
 
 git config --global user.name
 git config --global user.email

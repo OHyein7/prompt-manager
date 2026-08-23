@@ -87,6 +87,7 @@ git --version
 ### Git 사용자 정보
 
 git config --global user.name
+
 git config --global user.email
 
 ### GitHub 저장소
@@ -96,13 +97,21 @@ https://github.com/OHyein7/prompt-manager
 
 ### 코드 구조
 show_menu() : 프로그램 메뉴 출력
+
 add_prompt() : 새로운 프롬프트 추가
+
 show_list() : 전체 프롬프트 목록 출력
+
 show_by_category() : 카테고리별 프롬프트 조회
+
 search_prompt() : 키워드로 프롬프트 검색
+
 show_detail() : 프롬프트 상세 정보 출력
+
 manage_favorite() : 즐겨찾기 추가/해제
+
 show_favorites() : 즐겨찾기 목록 출력
+
 
 기능별로 함수를 분리하여 코드의 가독성과 유지보수성을 높였습니다.
 
@@ -143,16 +152,24 @@ title, content, category, favorite처럼 각 정보를 의미 있는 키로 관�
 사용한 커밋 메시지 형식의 예시는 다음과 같습니다.
 
 feat: 새로운 기능 추가
+
 fix: 오류 수정
+
 docs: README 등 문서 수정
+
 chore: 프로젝트 초기 설정
+
 
 예시:
 
 feat: add prompt creation
+
 feat: add prompt search
+
 feat: add favorite management
+
 fix: restore prompt search function
+
 docs: update README
 
 ### 데이터 영속화 설계

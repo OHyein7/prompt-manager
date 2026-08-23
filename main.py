@@ -72,6 +72,25 @@ def show_by_category():
     else:
         print(f"\n총 {count}개의 프롬프트")
 
+def search_prompt():
+    print("=== 프롬프트 검색 ===")
+
+    keyword = input("검색어: ")
+
+    count = 0
+
+    print("\n검색 결과:")
+
+    for i, prompt in enumerate(prompts, start=1):
+        if keyword in prompt["title"] or keyword in prompt["content"]:
+            star = "⭐" if prompt["favorite"] else ""
+            print(f"{i}. [{prompt['category']}] {prompt['title']} {star}")
+            count += 1
+
+    if count == 0:
+        print("검색 결과가 없습니다.")
+    else:
+        print(f"\n총 {count}개의 프롬프트를 찾았습니다.")
 
 def show_detail():
     print("=== 프롬프트 상세 보기 ===")
